@@ -1,0 +1,21 @@
+kind: ClusterConfiguration
+apiVersion: kubeadm.k8s.io/v1beta2
+imageRepository: k8s.gcr.io
+kubernetesVersion: v1.17.0
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+apiServer:
+  timeoutForControlPlane: 4m0s
+controllerManager: 
+  extraArgs:
+    "flex-volume-plugin-dir": /var/kube/flex/volume
+dns:
+  type: CoreDNS
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+networking:
+  dnsDomain: cluster.local
+  serviceSubnet: 10.96.0.0/12
+  podSubnet: 10.244.0.0/16
+scheduler: {}
